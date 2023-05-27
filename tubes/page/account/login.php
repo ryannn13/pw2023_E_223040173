@@ -1,35 +1,79 @@
+<?php
+require "function/funcions.php";
+
+if (isset($_POST["signin"])) {
+
+  $uname = $_POST["uname"];
+  $password = $_POST["password"];
+
+  $result = mysqli_query($conn, "SELECT * FROM admin WHERE username = '$uname'");
+
+  if (mysqli_num_rows($result) === 1) {
+
+    $row = mysqli_fetch_assoc($result);
+
+    if (password_verify($password, $row["password"])) {
+      header("Location: admin.php");
+      exit;
+    }
+  } else {
+    echo "
+        <script>
+            alert('Username / password salah');
+            document.location.href = '/pw2023_223040173/tubes/page/account/login.php';
+        </script> ";
+  }
+}
+?>
+
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sobat Sehat</title>
-    <link rel="website icon" href="/pw2023_223040173/tubes/image/logo/Sobat Sehat.png">
-    <link rel="stylesheet" href="/pw2023_223040173/tubes/css/login.css">
-  </head>
-  <body>
-<!-- Form login -->
-<div class="main">
-  <input type="checkbox" id="chk" aria-hidden="true">
-  <div class="signup">
-    <form action="user.php" method="post">
-      <label for="chk" aria-hidden="true">User Login</label>
-      <input type="text" name="txt" placeholder="Username">
-      <input type="email" name="email" placeholder="Email">
-      <input type="password" name="pswd" placeholder="Password">
-      <button type="submit">Masuk</button>
-    </form>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sobat Sehat</title>
+  <link rel="website icon" href="/pw2023_223040173/tubes/image/logo/Sobat Sehat.png">
+  <link rel="stylesheet" href="/pw2023_223040173/tubes/css/login.css">
+</head>
+
+<body>
+  <!-- Form login -->
+  <div class="wrapper login">
+    <div class="container">
+      <div class="col-left">
+        <div class="login-text">
+          <h2>Selamat Datang</h2>
+          <p>Buat Akun Baru</p>
+          <a href="register.php" class="btn">Sign Up</a>
+        </div>
+      </div>
+      <div class="col-right">
+        <div class="login-form">
+          <h2>Login</h2>
+          <form action="" method="post">
+            <p>
+              <label for="uname">Username<span>*</span></label>
+              <input type="text" name="uname" placeholder="Username" autocomplete="off" required>
+            </p>
+            <p>
+              <label for="password">Password<span>*</span></label>
+              <input type="password" name="password" placeholder="Password" autocomplete="off" required>
+            </p>
+            <button type="submit" name="signin" value="Sign In">Login</button>
+            <p>
+              <input type="checkbox" name="Remember" id="Remember">Remember Me
+            </p>
+            <p>
+              <a href="/pw2023_223040173/tubes/index.php">
+                < Kembali Ke Beranda</a>
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="login">
-    <form action="admin.php" method="post">
-      <label for="chk" aria-hidden="true">Admin Login</label>
-      <input type="text" name="txt" placeholder="Username">
-      <input type="email" name="email" placeholder="Email">
-      <input type="password" name="pswd" placeholder="Password">
-      <button type="submit">Masuk</button>
-    </form>
-  </div>
-</div>
-<!-- End Form login -->
-  </body>
+  <!-- End Form login -->
+</body>
+
 </html>

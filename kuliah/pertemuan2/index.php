@@ -1,5 +1,7 @@
 <?php 
 $nama = 'Rayen';
+$npm = '223040173';
+$matkul = 'Pemrograman Web';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,9 +15,7 @@ $nama = 'Rayen';
     <h1>
         <?php echo "Hello $nama"; ?>
     </h1>
-    <p> <?= 223040173 ; ?></p>
-    <p> <?php echo "Selamat datang di Pemrograman WEB"; ?></p>
-    
-    
+    <p> <?= "NPM " .$npm ; ?></p>
+    <p> <?php echo "Selamat datang di ".$matkul ; ?></p>
 </body>
 </html>

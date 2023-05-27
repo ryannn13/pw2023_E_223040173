@@ -75,13 +75,12 @@ h2 {
   color: grey;
 }
 
-.type-category label {
+.type-category option {
   padding: 0 20px 0 5px;
   font-size: 14px;
 }
 
-.type-category label,
-.type-category input {
+.type-category option {
   cursor: pointer;
 }
 

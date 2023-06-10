@@ -19,6 +19,7 @@ function tambah($data)
 
     $judul = htmlspecialchars($data["judul"]);
     $detail = htmlspecialchars($data["detail"]);
+    $kategori = htmlspecialchars($data["id_category"]);
 
     //upload gambar
     $gambar = upload();
@@ -28,7 +29,7 @@ function tambah($data)
 
     $query = "INSERT INTO content
 				VALUES
-			  (NULL, '$gambar', '$judul', '$detail');
+			  (NULL, '$gambar', '$judul', '$detail', '$kategori');
 			";
     mysqli_query($conn, $query);
 

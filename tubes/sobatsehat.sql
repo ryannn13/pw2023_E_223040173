@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 10, 2023 at 05:33 AM
+-- Generation Time: Jun 10, 2023 at 06:27 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -62,7 +62,9 @@ CREATE TABLE `category_content` (
 
 INSERT INTO `category_content` (`id_category`, `nama_category`) VALUES
 (1, 'Gaya Hidup Sehat'),
-(2, 'Kesehatan Fisik');
+(2, 'Kesehatan Fisik'),
+(3, 'Pengobatan Penyakit'),
+(4, 'Kesehatan Masyarakat');
 
 -- --------------------------------------------------------
 
@@ -86,7 +88,9 @@ INSERT INTO `content` (`id`, `gambar`, `judul`, `detail`, `id_category`) VALUES
 (1, 'Manfaat-Air-Garam.jpg', '5 Manfaat Air Garam untuk Kaki Agar Selalu Sehat', 'Air garam juga bisa dimanfaatkan sebagai air rendaman kaki. Apalagi jika garam yang digunakan sebagai campuran adalah garam Epsom. Penggunaannya pun bukan untuk bumbu memasak, melainkan sebagai garam mandi atau berendam dan inilah manfaat air garam untuk kaki biar selalu sehat.', 2),
 (13, 'Vitamin_E.jpg', 'Manfaat Vitamin E untuk Kulit', 'Vitamin E adalah vitamin larut lemak dan memiliki sifat anti-inflamasi. Manfaat vitamin E bagi tubuh sangat beragam. Vitamin E membantu mendukung sistem kekebalan tubuh, fungsi sel, dan kesehatan kulit.', 2),
 (18, 'sample.png', '4 Sehat 5 Sempurna', '4 Sehat 5 Sempurna adalah makanan yang memiliki kandungan gizi yang lengkap mulai dari karbohidrat, protein, vitamin, lemak dan mineral. Makanan 4 Sehat terdiri atas makanan pokok, lauk pauk, sayur, dan buah. Sedangkan 5 Sempurna merupakan susu yang menjadi nutrisi tambahan', 1),
-(43, '647c3374b845e.jpg', 'Efeknya Bagi Kesehatan Mata Saat Kekurangan Vitamin B', 'Vitamin B kompleks adalah salah satu jenis vitamin yang jangan sampai dilewatkan oleh tubuh kita. Vitamin ini memiliki peran penting dalam mendukung agar tubuh bisa berfungsi dan berkembang dengan lebih sempurna.Namun ketika tubuh mengalami kekurangan vitamin B kompleks, maka hal ini bisa berpengaruh pada kesehatan mata. Ada beberapa kondisi gangguan pada mata yang bisa terjadi di mana walaupun dianggap sepele, jangan abaikan dan segera penuhi kebutuhan vitamin B kompleks.', 2);
+(43, '647c3374b845e.jpg', 'Efeknya Bagi Kesehatan Mata Saat Kekurangan Vitamin B', 'Vitamin B kompleks adalah salah satu jenis vitamin yang jangan sampai dilewatkan oleh tubuh kita. Vitamin ini memiliki peran penting dalam mendukung agar tubuh bisa berfungsi dan berkembang dengan lebih sempurna.Namun ketika tubuh mengalami kekurangan vitamin B kompleks, maka hal ini bisa berpengaruh pada kesehatan mata. Ada beberapa kondisi gangguan pada mata yang bisa terjadi di mana walaupun dianggap sepele, jangan abaikan dan segera penuhi kebutuhan vitamin B kompleks.', 2),
+(44, '648415c152c1b.jpg', 'Kesadaran Kesehatan Masyarakat', 'Kesadaran kesehatan masyarakat merupakan elemen kunci dalam membangun lingkungan yang sehat dan berkelanjutan. Dengan meningkatkan kesadaran kesehatan masyarakat, kita dapat mendorong perilaku sehat, mencegah penyakit, dan meningkatkan kualitas hidup masyarakat secara keseluruhan. Dengan kerjasama dan upaya bersama, kita dapat menciptakan masyarakat yang sadar akan kesehatan dan berkomitmen untuk mencapai kesehatan yang lebih baik bagi semua.', 4),
+(45, '648417458efc7.jpg', 'Mengenal dan Mengatasi Penyakit Demam Berdarah', 'Penyakit demam berdarah, juga dikenal sebagai DBD, adalah penyakit serius yang disebabkan oleh virus dengue yang ditularkan oleh nyamuk Aedes aegypti. Penyakit ini dapat menyebabkan gejala yang parah, termasuk demam tinggi, nyeri sendi dan otot, ruam, dan dalam kasus yang parah, dapat menyebabkan perdarahan internal yang mengancam jiwa. Namun, dengan penanganan yang tepat, penyakit demam berdarah dapat diatasi. \r\nPengobatan penyakit demam berdarah melibatkan perawatan medis yang tepat dan dukungan yang memadai. Jika Anda atau orang yang Anda kenal mengalami gejala yang mencurigakan demam berdarah, segera hubungi penyedia layanan kesehatan. Selalu ingat bahwa pencegahan adalah langkah terbaik dalam menghindari penyakit ini, dengan mengurangi populasi nyamuk Aedes aegypti dan mengambil langkah-langkah pencegahan untuk melindungi diri dari gigitan nyamuk.', 3);
 
 -- --------------------------------------------------------
 
@@ -184,7 +188,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `content`
 --
 ALTER TABLE `content`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `konsultasi`

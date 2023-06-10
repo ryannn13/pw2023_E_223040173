@@ -58,6 +58,15 @@ if (isset($_POST["submit"])) {
             <label for="detail" class="form-label">Detail Content : </label>
             <textarea class="form-control" id="detail" name="detail" required rows="5"></textarea>
           </div>
+          <div class="mb-3">
+            <label for="id_category" class="form-label">Category Content : </label>
+            <select name="id_category" id="id_category">
+              <option value="1">Gaya Hidup Sehat</option>
+              <option value="2">Kesehatan Fisik</option>
+              <option value="3">Pengobatan Penyakit</option>
+              <option value="4">Kesehatan Masyarakat</option>
+            </select>
+          </div>
           <button type="submit" name="submit" class="btn btn-primary">Submit</button>
         </form>
         <a href="/pw2023_223040173/tubes/page/account/admin.php">Kembali</a>

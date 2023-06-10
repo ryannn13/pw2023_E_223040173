@@ -1,10 +1,15 @@
 <?php
+
+session_start();
+if (!isset($_SESSION["signin"])) {
+  header("Location: login.php");
+}
+
 require "function/funcions.php";
 $dtl = query("SELECT * FROM content");
-$user = query("SELECT * FROM user");
 
 //tombol cari ditekan
-if (isset($_POST["cari"])) {
+if (isset($_POST["tombol-cari"])) {
   $dtl = cari($_POST["keyword"]);
 }
 
@@ -14,16 +19,15 @@ if (isset($_POST["kirim"])) {
     echo "
         <script>
             alert('konsultasi berhasil');
-            document.location.href = '/pw2023_223040173/tubes/page/account/user.php';
         </script> ";
   } else {
     echo "
-        <sript>
+        <script>
             alert('Gagal Konsultasi');
-            document.location.href = '/pw2023_223040173/tubes/page/account/user.php';
         </script> ";
   }
 }
+
 ?>
 
 <!doctype html>
@@ -49,9 +53,7 @@ if (isset($_POST["kirim"])) {
         <div class="navbar-nav ms-auto">
           <a class="nav-link active" aria-current="page" href="/pw2023_223040173/tubes/index.php">Home</a>
           <a class="nav-link active" aria-current="page" href="#konsultasi">Konsultasi</a>
-          <a class="nav-link active" aria-current="page" href="#profile">Profile</a>
-          <a class="nav-link active" aria-current="page" href="#setting">Setting</a>
-          <a class="nav-link active" aria-current="page" href="Login.php">Log Out</a>
+          <a class="nav-link active" aria-current="page" href="Logout.php">Log Out</a>
         </div>
       </div>
     </div>
@@ -64,31 +66,33 @@ if (isset($_POST["kirim"])) {
     <div class="container">
       <h1 class="display-4">Sobat Sehat</h1>
       <p class="lead">Melayani Semua Keluhan dan Tips Kesehatan</p>
-      <form action="" method="post">
-        <input type="text" name="keyword" id="keyword" size="100" placeholder="Masukan Keyword pencarian..." autofocus autocomplete="off">
-        <button type="submit" name="cari">Cari</button>
+      <form action="" method="get">
+        <input type="search" name="keyword" id="keyword" size="100" placeholder="Masukan Keyword pencarian..." autofocus autocomplete="off">
+        <button type="submit" name="tombol-cari" id="tombol-cari">Cari</button>
       </form>
     </div>
   </div>
   <hr>
   <h2 Style="margin-left: 1vh; text-align:center;">Tips Kesehatan</h2>
-  <div class="container">
-    <div class="row">
-      <?php foreach ($dtl as $row) : ?>
-        <div class="col-lg-4">
-          <div class="card" style="width: 20rem; float:left; margin:1.2rem; margin-top: -0.3vh;">
-            <img src="/pw2023_223040173/tubes/image/isi/<?= $row["gambar"]; ?>" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title"><?= $row["judul"]; ?></h5>
-              <p class="card-text"><?= $row["detail"]; ?></p>
+  <div id="container-tabel">
+    <div class="container">
+      <div class="row">
+        <?php foreach ($dtl as $row) : ?>
+          <div class="col-lg-4">
+            <div class="card" style="width: 20rem; float:left; margin:1.2rem; margin-top: -0.3vh;">
+              <img src="/pw2023_223040173/tubes/image/isi/<?= $row["gambar"]; ?>" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title"><?= $row["judul"]; ?></h5>
+                <p class="card-text"><?= $row["detail"]; ?></p>
+              </div>
             </div>
           </div>
-        </div>
-      <?php endforeach; ?>
+        <?php endforeach; ?>
+      </div>
     </div>
+    <hr>
+    <br>
   </div>
-  <hr>
-  <br>
 
   <!-- Konsultasi -->
   <div class="container my-5" id="konsultasi">
@@ -115,60 +119,6 @@ if (isset($_POST["kirim"])) {
           </div>
           <button type="submit" name="kirim" class="btn btn-primary">Kirim Pesan</button>
         </form>
-      </div>
-    </div>
-    <hr>
-
-    <!-- Profile -->
-    <div class="jumbotron jumbotron-fluid">
-      <div class="container">
-        <h2 id="profile">User Profile</h2>
-        <div class="row">
-          <div class="col-md-9">
-            <h3>Name: </h3>
-            <p>Username: </p>
-            <p>Email: </p>
-            <p>Nomer Hp / Whatsapp: </p>
-            <button class="btn btn-primary" id="setting">Edit Profile</button>
-          </div>
-        </div>
-        <hr>
-
-        <!-- Setting -->
-        <div class="row" id="setting-section">
-          <h2>User Settings</h2>
-          <div class="col-md-6">
-            <h3>General</h3>
-            <form action="" method="post">
-              <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" class="form-control" id="name" placeholder="Enter name">
-              </div>
-              <div class="form-group">
-                <label for="email-address">Email address</label>
-                <input type="email" class="form-control" id="email-address" placeholder="Enter email">
-              </div>
-              <div class="form-group">
-                <label for="phone">Phone</label>
-                <input type="tel" class="form-control" id="phone" placeholder="Enter phone number">
-              </div>
-              <h3>Password</h3>
-              <div class="form-group">
-                <label for="current-password">Current Password</label>
-                <input type="password" class="form-control" id="current-password" placeholder="Enter current password">
-              </div>
-              <div class="form-group">
-                <label for="new-password">New Password</label>
-                <input type="password" class="form-control" id="new-password" placeholder="Enter new password">
-              </div>
-              <div class="form-group">
-                <label for="confirm-password">Confirm Password</label>
-                <input type="password" class="form-control" id="confirm-password" placeholder="Confirm new password">
-              </div>
-              <button type="submit" name="change" class="btn btn-primary">Change Password</button>
-            </form>
-          </div>
-        </div>
       </div>
     </div>
     <hr>
@@ -202,7 +152,7 @@ if (isset($_POST["kirim"])) {
 
     <!-- Script -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-    <script src="/pw2023_223040173/tubes/js/user.js"></script>
+    <script src="../../js/script.js"></script>
 </body>
 
 </html>

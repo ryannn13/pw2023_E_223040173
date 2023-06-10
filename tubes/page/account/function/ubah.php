@@ -1,4 +1,10 @@
 <?php
+
+session_start();
+if (!isset($_SESSION["signin"])) {
+  header("Location: login.php");
+}
+
 require 'funcions.php';
 
 //ambil data di URL
@@ -19,9 +25,9 @@ if (isset($_POST["submit"])) {
         </script> ";
   } else {
     echo "
-        <sript>
+        <script>
             alert('Data gagal diubah');
-            document.location.href = '/pw2023_223040173/tubes/page/account/ubah.php';
+            document.location.href = 'ubah.php';
         </script> ";
   }
 }

@@ -1,9 +1,15 @@
-<?php 
+<?php
+
+session_start();
+if (!isset($_SESSION["signin"])) {
+    header("Location: login.php");
+}
+
 require 'funcions.php';
 
 $id = $_GET["id"];
 
-if ( hapus($id) > 0) {
+if (hapus($id) > 0) {
     echo "
         <script>
             alert('Data berhasil dihapus');
@@ -16,4 +22,3 @@ if ( hapus($id) > 0) {
             document.location.href = '../admin.php';
         </script> ";
 }
-?>

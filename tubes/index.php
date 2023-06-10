@@ -1,4 +1,10 @@
 <?php
+
+// session_start();
+// if (!isset($_SESSION["signin"])) {
+//   header("Location: login.php");
+// }
+
 require "page/account/function/funcions.php";
 $dtl = query("SELECT * FROM content");
 
@@ -7,22 +13,6 @@ if (isset($_POST["cari"])) {
   $dtl = cari($_POST["keyword"]);
 }
 
-if (isset($_POST["kirim"])) {
-
-  if (konsultasi($_POST) > 0) {
-    echo "
-        <script>
-            alert('konsultasi berhasil');
-            document.location.href = '/pw2023_223040173/tubes/index.php';
-        </script> ";
-  } else {
-    echo "
-        <sript>
-            alert('Gagal Konsultasi');
-            document.location.href = '/pw2023_223040173/tubes/index.php';
-        </script> ";
-  }
-}
 ?>
 
 <!DOCTYPE html>
@@ -50,7 +40,6 @@ if (isset($_POST["kirim"])) {
       <div class="collapse navbar-collapse" id="navbarNav">
         <div class="navbar-nav ms-auto">
           <a class="nav-link " aria-current="page" href="index.php">Home</a>
-          <a class="nav-link" aria-current="page" href="#konsultasi">Konsultasi</a>
           <a class="nav-link" aria-current="page" href="#about">Tentang Kami</a>
           <a class="nav-link" aria-current="page" href="page/account/Login.php">Masuk</a>
         </div>
@@ -91,7 +80,7 @@ if (isset($_POST["kirim"])) {
     <div class="row">
       <?php foreach ($dtl as $row) : ?>
         <div class="card" style="width: 20rem; float:left; margin:1.2rem; margin-top: -0.3vh;">
-          <img src="image/isi/<?= $row["gambar"]; ?>" class="card-img-top" alt="...">
+          <img src="image/isi/<?= $row["gambar"]; ?>" class="card-img-top" alt="<?php $row['gambar']; ?>">
           <div class="card-body">
             <h5 class="card-title"><?= $row["judul"]; ?></h5>
             <p class="card-text"><?= $row["detail"]; ?></p>
@@ -103,64 +92,35 @@ if (isset($_POST["kirim"])) {
   <hr>
   <br>
 
-  <!-- Konsultasi -->
-  <div class="container my-3" id="konsultasi">
+  <!-- About Us -->
+  <div class="container my-5" id="about">
     <div class="row">
       <div class="col-md-6">
-        <h1>Konsultasi</h1>
-        <p>Isi pesan Anda di bawah ini:</p>
-        <form action="" method="post">
-          <div class="mb-3">
-            <label for="nama" class="form-label">Nama</label>
-            <input type="text" class="form-control" id="nama" name="nama" autocomplete="off" required>
-          </div>
-          <div class="mb-3">
-            <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" id="email" name="email" autocomplete="off" required>
-          </div>
-          <div class="mb-3">
-            <label for="tel" class="form-label">Nomer HP / Whatsapp</label>
-            <input class="form-control" id="tel" name="tel" autocomplete="off" required>
-          </div>
-          <div class="mb-3">
-            <label for="pesan" class="form-label">Pesan</label>
-            <textarea class="form-control" id="pesan" name="pesan" rows="5" autocomplete="off" required></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary">Kirim Pesan</button>
-        </form>
+        <h1>Tentang Kami</h1>
+        <p>Sobat Sehat adalah website yang menyajikan infomasi tentang kesehatan. Tidak hanya itu, kami juga memberikan layanan konsultasi.</p>
+        <p>Sosial media:</p>
+        <ul class="list-inline m-1">
+          <li class="list-inline-item"><a href="https://www.facebook.com"><i class="bi bi-facebook">Facebook</i></a></li>
+          <li class="list-inline-item"><a href="https://twitter.com"><i class="bi bi-twitter">Twitter</i></a></li>
+          <li class="list-inline-item"><a href="https://instagram.com"><i class="bi bi-instagram">Instagram</i></a></li>
+          <a href="https://api.whatsapp.com"><i class="bi bi-whatsapp">Whatsapp</i></a>
+        </ul>
+      </div>
+      <div class="col-md-6">
+        <img src="image/logo/Sobat Sehat.png" alt="Sobat Sehat" class="img-fluid">
       </div>
     </div>
-    <hr>
+  </div>
 
-    <!-- About Us -->
-    <div class="container my-5" id="about">
-      <div class="row">
-        <div class="col-md-6">
-          <h1>Tentang Kami</h1>
-          <p>Sobat Sehat adalah website yang menyajikan infomasi tentang kesehatan. Tidak hanya itu, kami juga memberikan layanan konsultasi.</p>
-          <p>Sosial media:</p>
-          <ul class="list-inline m-1">
-            <li class="list-inline-item"><a href="https://www.facebook.com"><i class="bi bi-facebook">Facebook</i></a></li>
-            <li class="list-inline-item"><a href="https://twitter.com"><i class="bi bi-twitter">Twitter</i></a></li>
-            <li class="list-inline-item"><a href="https://instagram.com"><i class="bi bi-instagram">Instagram</i></a></li>
-            <a href="https://api.whatsapp.com"><i class="bi bi-whatsapp">Whatsapp</i></a>
-          </ul>
-        </div>
-        <div class="col-md-6">
-          <img src="image/logo/Sobat Sehat.png" alt="Placeholder Image" class="img-fluid">
-        </div>
-      </div>
+  <!-- Footer -->
+  <footer class="footer mt-auto py-3 text-center">
+    <div class="container">
+      <span class="text-muted">© 2023 Ryan Hidayat</span>
     </div>
+  </footer>
 
-    <!-- Footer -->
-    <footer class="footer mt-auto py-3 text-center">
-      <div class="container">
-        <span class="text-muted">© 2023 Ryan Hidayat</span>
-      </div>
-    </footer>
-
-    <!-- Script -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+  <!-- Script -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 </body>
 
 </html>

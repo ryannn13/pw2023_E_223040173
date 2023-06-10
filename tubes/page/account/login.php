@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 require "function/funcions.php";
 
 if (isset($_POST["signin"])) {
@@ -13,6 +15,9 @@ if (isset($_POST["signin"])) {
     $row = mysqli_fetch_assoc($result);
 
     if (password_verify($password, $row["password"])) {
+      //set session
+      $_SESSION["signin"] = true;
+
       header("Location: admin.php");
       exit;
     }
@@ -20,7 +25,32 @@ if (isset($_POST["signin"])) {
     echo "
         <script>
             alert('Username / password salah');
-            document.location.href = '/pw2023_223040173/tubes/page/account/login.php';
+        </script> ";
+  }
+}
+
+if (isset($_POST["signin"])) {
+
+  $uname = $_POST["uname"];
+  $password = $_POST["password"];
+
+  $result = mysqli_query($conn, "SELECT * FROM user WHERE username = '$uname'");
+
+  if (mysqli_num_rows($result) === 1) {
+
+    $row = mysqli_fetch_assoc($result);
+
+    if (password_verify($password, $row["password"])) {
+      //set session
+      $_SESSION["signin"] = true;
+
+      header("Location: user.php");
+      exit;
+    }
+  } else {
+    echo "
+        <script>
+            alert('Username / password salah');
         </script> ";
   }
 }
@@ -61,9 +91,6 @@ if (isset($_POST["signin"])) {
               <input type="password" name="password" placeholder="Password" autocomplete="off" required>
             </p>
             <button type="submit" name="signin" value="Sign In">Login</button>
-            <p>
-              <input type="checkbox" name="Remember" id="Remember">Remember Me
-            </p>
             <p>
               <a href="/pw2023_223040173/tubes/index.php">
                 < Kembali Ke Beranda</a>

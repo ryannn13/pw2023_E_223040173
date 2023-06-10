@@ -1,4 +1,10 @@
 <?php
+
+session_start();
+if (!isset($_SESSION["signin"])) {
+  header("Location: login.php");
+}
+
 require 'funcions.php';
 
 //cek apakah tombol submit sudah ditekan
@@ -9,13 +15,13 @@ if (isset($_POST["submit"])) {
     echo "
         <script>
             alert('Data berhasil ditambahkan');
-            document.location.href = '/pw2023_223040173/tubes/page/account/admin.php';
+            document.location.href = '../admin.php';
         </script> ";
   } else {
     echo "
         <script>
             alert('Data gagal ditambahkan');
-            document.location.href = '/pw2023_223040173/tubes/page/account/function/add.php';
+            document.location.href = 'add.php';
         </script> ";
   }
 }

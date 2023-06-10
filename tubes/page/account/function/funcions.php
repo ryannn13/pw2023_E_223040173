@@ -73,7 +73,7 @@ function upload()
     //upload gambar ke direktori
     //generate nama gambar baru
     $nmFileBr = uniqid() . '.' . $eksnGambar;
-    $tujuan = __DIR__ . 'C:\\laragon\\www\\pw2023_223040173\\tubes\\page\\account\\function' . $nmFileBr;
+    $tujuan = '../../../image/isi/' . $nmFileBr;
     move_uploaded_file($tmpName, $tujuan);
 
     return $nmFileBr;
@@ -193,6 +193,37 @@ function regis($data)
         echo "Tipe yang dipilih tidak valid.";
         exit;
     }
+    return mysqli_affected_rows($conn);
+}
+
+function setadmin($data)
+{
+    global $conn;
+
+    $id = $data["id"];
+    $nama = htmlspecialchars($data["nama"]);
+    $username = htmlspecialchars($data["uname"]);
+    $email = htmlspecialchars($data["email"]);
+    $kontak = htmlspecialchars($data["kontak"]);
+    $pswdbr = mysqli_real_escape_string($conn, $data["password-baru"]);
+    $pswdkonf = mysqli_real_escape_string($conn, $data["password-konfirm"]);
+
+    if ($pswdbr !== $pswdkonf) {
+        echo "Password baru dan Konfirmasi password salah";
+        return false;
+    }
+
+    $pswdbaru = password_hash($pswdbr, PASSWORD_DEFAULT);
+
+    $query = "UPDATE admin SET 
+            nama = '$nama',
+            username = '$username',
+            email = '$email',
+            kontak = '$kontak',
+            password = '$pswdbaru'
+            WHERE id = $id
+			";
+    mysqli_query($conn, $query);
 
     return mysqli_affected_rows($conn);
 }

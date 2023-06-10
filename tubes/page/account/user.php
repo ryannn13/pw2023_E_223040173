@@ -83,7 +83,8 @@ if (isset($_POST["kirim"])) {
               <img src="/pw2023_223040173/tubes/image/isi/<?= $row["gambar"]; ?>" class="card-img-top" alt="...">
               <div class="card-body">
                 <h5 class="card-title"><?= $row["judul"]; ?></h5>
-                <p class="card-text"><?= $row["detail"]; ?></p>
+                <p class="card-text"><?= substr_replace($row["detail"], "<a href='#'>....Baca Selengkapnya</a>", 100); ?></p>
+                <a href="details.php?id=<?= $row["id"]; ?>" class="btn btn-secondary">Detail</a>
               </div>
             </div>
           </div>

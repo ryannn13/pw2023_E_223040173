@@ -133,8 +133,8 @@ if (isset($_POST["cari"])) {
                     </td>
                     <td><?= $row["nama_category"]; ?></td>
                     <td><?= $row["judul"]; ?></td>
-                    <td><img src="../../image/isi/<?= $row["gambar"]; ?>" width="100"></td>
-                    <td><?= $row["detail"]; ?></td>
+                    <td><img src="../../image/isi/<?= $row["gambar"]; ?>" width="50"></td>
+                    <td><?= substr_replace($row["detail"], "<a></a>", 100); ?></td>
                   </tr>
                   <?php $i++; ?>
                 <?php endforeach; ?>

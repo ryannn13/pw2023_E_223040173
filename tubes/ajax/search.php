@@ -29,13 +29,13 @@ $dtl = query($query);
             <tr>
                 <td><?= $i; ?></td>
                 <td>
-                    <a href="function/ubah.php?id=<?= $row['id']; ?>" class="badge text-bg-warning">Edit</a> |
-                    <a href="function/hapus.php?id=<?= $row['id']; ?>" class="badge text-bg-danger" onclick="return confirm('yakin?');">Delete</a>
+                    <a href="function/ubah.php?id=<?= $row['id']; ?>" class="badge text-bg-warning">⚙️</a> |
+                    <a href="function/hapus.php?id=<?= $row['id']; ?>" class="badge text-bg-danger" onclick="return confirm('yakin?');">🗑</a>
                 </td>
                 <td><?= $row["nama_category"]; ?></td>
                 <td><?= $row["judul"]; ?></td>
                 <td><img src="../../image/isi/<?= $row["gambar"]; ?>" width="100"></td>
-                <td><?= $row["detail"]; ?></td>
+                <td><?= substr_replace($row["detail"], "<a></a>", 100); ?></td>
             </tr>
             <?php $i++; ?>
         <?php endforeach; ?>

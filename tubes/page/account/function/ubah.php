@@ -27,7 +27,7 @@ if (isset($_POST["submit"])) {
     echo "
         <script>
             alert('Data gagal diubah');
-            document.location.href = 'ubah.php';
+            document.location.href = '/pw2023_223040173/tubes/page/account/admin.php';
         </script> ";
   }
 }

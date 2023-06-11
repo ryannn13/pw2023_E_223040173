@@ -1,4 +1,9 @@
 <?php
+session_start();
+if (!isset($_SESSION["signin"])) {
+    header("Location: login.php");
+}
+
 require 'function/funcions.php';
 
 $id = $_GET['id'];
@@ -23,11 +28,13 @@ $dtl = query("SELECT * FROM content WHERE id = $id ")[0];
         <hr>
         <img src="../../image/isi/<?= $dtl['gambar']; ?>" alt="" width="30%">
         <hr>
-        <p> <?= $dtl['detail']; ?></p>
+        <p><?= $dtl['detail']; ?></p>
     </div>
+    <button type="submit" name="submit" class="btn btn-primary"><a href="user.php" style="color: black;">
+            < Kembali</a></button>
 
     <!-- Foter -->
-    <footer class="footer mt-auto py-3 text-center">
+    <footer class="footer mt-5 py-3 text-center">
         <div class="container">
             <span class="text-muted">© 2023 Ryan Hidayat</span>
         </div>

@@ -83,7 +83,8 @@ if (isset($_POST["cari"])) {
           <img src="image/isi/<?= $row["gambar"]; ?>" class="card-img-top" alt="<?php $row['gambar']; ?>">
           <div class="card-body">
             <h5 class="card-title"><?= $row["judul"]; ?></h5>
-            <p class="card-text"><?= $row["detail"]; ?></p>
+            <p class="card-text"><?= substr_replace($row["detail"], "<a href='#'>....Baca Selengkapnya</a>", 100); ?></p>
+            <a href="page/account/details.php?id=<?= $row["id"]; ?>" class="btn btn-secondary">Detail</a>
           </div>
         </div>
       <?php endforeach; ?>
